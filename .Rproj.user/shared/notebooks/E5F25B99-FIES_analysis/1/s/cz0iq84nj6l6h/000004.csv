@@ -1,0 +1,5 @@
+"0","# Fit weighted Rasch"
+"0","rr.country1 = RM.w(XX.country1, wt.country1)"
+"0",""
+"0","# Fit unweighted Rasch"
+"0","rr.country1.nw = RM.w(XX.country1)"

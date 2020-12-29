@@ -1,0 +1,33 @@
+"country equating output from R processing"
+
+Common items
+"WORRIED","Unique"
+"HEALTHY","Common"
+"FEWFOOD","Common"
+"SKIPPED","Common"
+"ATELESS","Common"
+"RUNOUT","Common"
+"HUNGRY","Common"
+"WHLDAY","Common"
+
+Correlation between common items
+0.957707763419429
+
+Adjusted thresholds on country metric
+"FI_mod+",-0.351822585445423
+"FI_sev",1.54613432743323
+
+Prevalence rates at adjusted thresholds (%)
+"FI_mod+",71.65
+"FI_sev",47.79
+
+Probability at adjusted thresholds for each raw score
+"0",0,0
+"1",0.0500534420760917,0.000359112872739598
+"2",0.145482627533204,0.000498071270379263
+"3",0.371898621605054,0.00263086023314762
+"4",0.665865264200235,0.0183545117657892
+"5",0.876771051415574,0.103084210041695
+"6",0.965020277666485,0.359583765988323
+"7",0.988091802411276,0.715826599608125
+"8",0.988620141755694,0.839454540735482

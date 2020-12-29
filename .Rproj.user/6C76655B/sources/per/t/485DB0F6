@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594317153938.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2975552536",
+    "id" : "485DB0F6",
+    "lastKnownWriteTime" : 1594326435,
+    "last_content_update" : 1594326435897,
+    "path" : "C:/Users/Asus/Desktop/Final_FIES/FIES_analysis.Rmd",
+    "project_path" : "FIES_analysis.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "8,3",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

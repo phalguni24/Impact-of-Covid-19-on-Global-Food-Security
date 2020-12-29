@@ -1,0 +1,8 @@
+"0","# Taking the Item standard error."
+"0","b=rr.country1$b"
+"0",""
+"0","# ICC values"
+"0","icc = ICC.fun(b)$icc"
+"0",""
+"0","# ICC plot"
+"0","icc = ICC.fun(b, plot = TRUE)"

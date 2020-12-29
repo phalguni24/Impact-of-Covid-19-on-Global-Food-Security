@@ -1,0 +1,3 @@
+"0","# Matrix of questionnaire data and weights (for the Rasch analysis)"
+"0","XX.country1 = data.FAO_country1[,1:8]"
+"0","wt.country1 = data.FAO_country1$wt"

@@ -1,0 +1,508 @@
+---
+title: "FIES scale for analysis of Food Insecurity using the Rasch Model"
+output: html_notebook
+---
+
+## Importing the Libraries
+```{r}
+library("RM.weights")
+```
+
+
+
+## Inserting the Datasets
+#### The dataset includes the FIES data (Food Insecurity Experience based Scale), sampling weights, and some demographic variables for a sample country (Country1). Data have been collected by the Gallup World Poll.
+
+```{r}
+# Country 1 data
+load("C:/Users/Asus/Desktop/Final_FIES/data.FAO_country1.rda")
+
+# Country 2 data
+load("C:/Users/Asus/Desktop/Final_FIES/data.FAO_country2.rda")
+
+# Country 3 data
+load("C:/Users/Asus/Desktop/Final_FIES/data.FAO_country3.rda")
+
+# Country 4 data
+load("C:/Users/Asus/Desktop/Final_FIES/data.FAO_country4.rda")
+```
+
+# Analysing Country 1
+## Questionnaire data and weights
+```{r}
+# Matrix of questionnaire data and weights (for the Rasch analysis)
+XX.country1 = data.FAO_country1[,1:8]
+wt.country1 = data.FAO_country1$wt
+```
+
+## Creating the Rasch Model for Country 1
+```{r}
+# Fit weighted Rasch
+rr.country1 = RM.w(XX.country1, wt.country1)
+
+# Fit unweighted Rasch
+rr.country1.nw = RM.w(XX.country1)
+```
+
+### Displaying important parameters
+
+```{r}
+# Item severity
+rr.country1$b
+```
+
+```{r}
+# Item standard error
+rr.country1$se.b
+```
+
+```{r}
+# Respondent severity for each raw score
+rr.country1$a
+```
+
+```{r}
+# Respondent measurement error for each raw score
+rr.country1$se.a
+```
+
+```{r}
+# Item infit
+rr.country1$infit
+```
+
+```{r}
+# Item outfit
+rr.country1$outfit
+```
+
+```{r}
+# Rasch reliability based on observed distribution of cases across raw scores
+rr.country1$reliab
+```
+
+```{r}
+# Rasch reliability based on equal proportion of cases in each
+# non-extreme raw score (more comparable across datasets)
+rr.country1$reliab.fl
+```
+
+```{r}
+# Checking conditional independence: residual correlation matrix
+rr.country1$res.cor
+```
+
+## Equating against 2014-2016 FAO global standard for the Food Insecurity Experience scale.
+
+#### Iterative Equating.
+```{r}
+# Iterative equating
+ee1=equating.fun(rr.country1, spec.com1=c(1:8),spec.com2=c(1:8), write.file=TRUE, plot=TRUE)
+
+# Common and Unique Items
+ee1$common
+```
+
+#### Non-Iterative Equating.
+```{r}
+ee2=equating.fun(rr.country1, spec.com1=c(1:8),spec.com2=c(1:8), write.file=TRUE, plot=TRUE, iterative = FALSE,excl.prior1=1,excl.prior2=1)
+
+# Common and Unique Items
+ee2$common
+```
+
+## Item Characteristic Curve (ICC)
+
+```{r}
+# Taking the Item standard error.
+b=rr.country1$b
+
+# ICC values
+icc = ICC.fun(b)$icc
+
+# ICC plot
+icc = ICC.fun(b, plot = TRUE)
+```
+
+## Displaying prevelance of FOOD Insecurity for Country 1.
+### Prevalence rate (Mod+Sev)	& Prevalence rate (Sev) are displayed below
+### Fmod+sev and Fsev
+
+
+```{r}
+## Prevalence rates
+# Prevelance rates after Iterative Equating
+ee1$prevs
+
+# Prevelance rates after Non-Iterative Equating
+ee2$prevs
+```
+
+=====================================================================================================
+=====================================================================================================
+
+# Analysing Country 2
+## Questionnaire data and weights
+```{r}
+# Matrix oftionnaire data and weights (for the Rasch analysis)
+XX.country2 = data.FAO_country2[,1:8]
+wt.country2 = data.FAO_country2$wt
+```
+
+## Creating the Rasch Model for Country 2
+```{r}
+# Fit weighted Rasch
+rr.country2 = RM.w(XX.country2, wt.country2)
+
+# Fit unweighted Rasch
+rr.country2.nw = RM.w(XX.country2) 
+```
+
+### Displaying important parameters
+
+```{r}
+# Item severity
+rr.country2$b
+```
+
+```{r}
+# Item standard error
+rr.country2$se.b
+```
+
+```{r}
+# Respondent severity for each raw score
+rr.country2$a
+```
+
+```{r}
+# Respondent measurement error for each raw score
+rr.country2$se.a
+```
+
+```{r}
+# Item infit
+rr.country2$infit
+```
+
+```{r}
+# Item outfit
+rr.country2$outfit
+```
+
+```{r}
+# Rasch reliability based on observed distribution of cases across raw scores
+rr.country2$reliab
+```
+
+```{r}
+# Rasch reliability based on equal proportion of cases in each
+# non-extreme raw score (more comparable across datasets)
+rr.country2$reliab.fl
+```
+
+```{r}
+# Checking conditional independence: residual correlation matrix
+rr.country2$res.cor
+```
+
+## Equating against 2014-2016 FAO global standard for the Food Insecurity Experience scale.
+
+#### Iterative Equating.
+```{r}
+# Iterative equating
+ee1.country2=equating.fun(rr.country2, spec.com1=c(1:8),spec.com2=c(1:8), write.file=TRUE, plot=TRUE)
+
+# Common and Unique Items
+ee1.country2$common
+```
+
+#### Non-Iterative Equating.
+```{r}
+ee2.country2=equating.fun(rr.country2, spec.com1=c(1:8),spec.com2=c(1:8), write.file=TRUE, plot=TRUE, iterative = FALSE,excl.prior1=3,excl.prior2=3)
+
+# Common and Unique Items
+ee2.country2$common
+```
+
+## Item Characteristic Curve (ICC)
+
+```{r}
+# Taking the Item standard error.
+b=rr.country2$b
+
+# ICC values
+icc.country2 = ICC.fun(b)$icc
+
+# ICC plot
+icc.country2 = ICC.fun(b, plot = TRUE)
+```
+
+## Displaying prevelance of FOOD Insecurity for Country 2.
+### Prevalence rate (Mod+Sev)	& Prevalence rate (Sev) are displayed below
+### Fmod+sev and Fsev
+
+
+```{r}
+## Prevalence rates
+# Prevelance rates after Iterative Equating
+ee1.country2$prevs
+
+# Prevelance rates after Non-Iterative Equating
+ee2.country2$prevs
+```
+
+=====================================================================================================
+=====================================================================================================
+
+# Analysing Country 3
+## Questionnaire data and weights
+```{r}
+# Matrix oftionnaire data and weights (for the Rasch analysis)
+XX.country3 = data.FAO_country3[,1:8]
+wt.country3 = data.FAO_country3$wt
+```
+
+## Creating the Rasch Model for Country 3
+```{r}
+# Fit weighted Rasch
+rr.country3 = RM.w(XX.country3, wt.country3)
+
+# Fit unweighted Rasch
+rr.country3.nw = RM.w(XX.country3) 
+```
+
+### Displaying important parameters
+
+```{r}
+# Item severity
+rr.country3$b
+```
+
+```{r}
+# Item standard error
+rr.country3$se.b
+```
+
+```{r}
+# Respondent severity for each raw score
+rr.country3$a
+```
+
+```{r}
+# Respondent measurement error for each raw score
+rr.country3$se.a
+```
+
+```{r}
+# Item infit
+rr.country3$infit
+```
+
+```{r}
+# Item outfit
+rr.country3$outfit
+```
+
+```{r}
+# Rasch reliability based on observed distribution of cases across raw scores
+rr.country3$reliab
+```
+
+```{r}
+# Rasch reliability based on equal proportion of cases in each
+# non-extreme raw score (more comparable across datasets)
+rr.country3$reliab.fl
+```
+
+```{r}
+# Checking conditional independence: residual correlation matrix
+rr.country3$res.cor
+```
+
+## Equating against 2014-2016 FAO global standard for the Food Insecurity Experience scale.
+
+#### Iterative Equating.
+```{r}
+# Iterative equating
+ee1.country3=equating.fun(rr.country3, spec.com1=c(1:8),spec.com2=c(1:8), write.file=TRUE, plot=TRUE)
+
+# Common and Unique Items
+ee1.country3$common
+```
+
+#### Non-Iterative Equating.
+```{r}
+ee2.country3=equating.fun(rr.country3, spec.com1=c(1:8),spec.com2=c(1:8), write.file=TRUE, plot=TRUE, iterative = FALSE,excl.prior1=7,excl.prior2=7)
+
+# Common and Unique Items
+ee2.country3$common
+```
+
+## Item Characteristic Curve (ICC)
+
+```{r}
+# Taking the Item standard error.
+b=rr.country3$b
+
+# ICC values
+icc.country3 = ICC.fun(b)$icc
+
+# ICC plot
+icc.country3 = ICC.fun(b, plot = TRUE)
+```
+
+## Displaying prevelance of FOOD Insecurity for Country 3.
+### Prevalence rate (Mod+Sev)	& Prevalence rate (Sev) are displayed below
+### Fmod+sev and Fsev
+
+
+```{r}
+## Prevalence rates
+# Prevelance rates after Iterative Equating
+ee1.country3$prevs
+
+# Prevelance rates after Non-Iterative Equating
+ee2.country3$prevs
+```
+
+=====================================================================================================
+=====================================================================================================
+
+
+# Analysing Country 4
+## Questionnaire data and weights
+```{r}
+# Matrix oftionnaire data and weights (for the Rasch analysis)
+XX.country4 = data.FAO_country4[,1:8]
+wt.country4 = data.FAO_country4$wt
+```
+
+## Creating the Rasch Model for Country 4
+```{r}
+# Fit weighted Rasch
+rr.country4 = RM.w(XX.country4, wt.country4)
+
+# Fit unweighted Rasch
+rr.country4.nw = RM.w(XX.country4) 
+```
+
+### Displaying important parameters
+
+```{r}
+# Item severity
+rr.country4$b
+```
+
+```{r}
+# Item standard error
+rr.country4$se.b
+```
+
+```{r}
+# Respondent severity for each raw score
+rr.country4$a
+```
+
+```{r}
+# Respondent measurement error for each raw score
+rr.country4$se.a
+```
+
+```{r}
+# Item infit
+rr.country4$infit
+```
+
+```{r}
+# Item outfit
+rr.country4$outfit
+```
+
+```{r}
+# Rasch reliability based on observed distribution of cases across raw scores
+rr.country4$reliab
+```
+
+```{r}
+# Rasch reliability based on equal proportion of cases in each
+# non-extreme raw score (more comparable across datasets)
+rr.country4$reliab.fl
+```
+
+```{r}
+# Checking conditional independence: residual correlation matrix
+rr.country4$res.cor
+```
+
+## Equating against 2014-2016 FAO global standard for the Food Insecurity Experience scale.
+
+#### Iterative Equating.
+```{r}
+# Iterative equating
+ee1.country4=equating.fun(rr.country4, spec.com1=c(1:8),spec.com2=c(1:8), write.file=TRUE, plot=TRUE)
+
+# Common and Unique Items
+ee1.country4$common
+```
+
+#### Non-Iterative Equating.
+```{r}
+ee2.country4=equating.fun(rr.country4, spec.com1=c(1:8),spec.com2=c(1:8), write.file=TRUE, plot=TRUE, iterative = FALSE,excl.prior1=1,excl.prior2=1)
+
+# Common and Unique Items
+ee2.country4$common
+```
+
+## Item Characteristic Curve (ICC)
+
+```{r}
+# Taking the Item standard error.
+b=rr.country4$b
+
+# ICC values
+icc.country4 = ICC.fun(b)$icc
+
+# ICC plot
+icc.country4 = ICC.fun(b, plot = TRUE)
+```
+
+## Displaying prevelance of FOOD Insecurity for Country 4.
+### Prevalence rate (Mod+Sev)	& Prevalence rate (Sev) are displayed below
+### Fmod+sev and Fsev
+
+
+```{r}
+## Prevalence rates
+# Prevelance rates after Iterative Equating
+ee1.country4$prevs
+
+# Prevelance rates after Non-Iterative Equating
+ee2.country4$prevs
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
